@@ -42,9 +42,7 @@ def display_log_counts(counts: dict): #для виводу на екран за�
 if __name__ == "__main__":
     try:
         print(display_log_counts(count_logs_by_level(load_logs(sys.argv[1]))))
-        try:
-            print(f'Деталі логів для типу {sys.argv[2]}:\n' + ''.join(map(lambda x: f'{x['date']} {x['time']} {x['information']}\n',filter_logs_by_level(load_logs('log.txt'),'error'))))
-        except Exception as exc:
-            print(f'There is an error: {exc}!')
+        if len(sys.argv) == 3:
+            print(f'Деталі логів для типу {sys.argv[2]}:\n' + ''.join(map(lambda x: f'{x['date']} {x['time']} {x['information']}\n',filter_logs_by_level(load_logs('log.txt'),sys.argv[2]))))
     except Exception as exc:
             print(f'There is an error: {exc}!')
